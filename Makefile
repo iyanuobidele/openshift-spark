@@ -1,5 +1,7 @@
-LOCAL_IMAGE=openshift-spark
-SPARK_IMAGE=mattf/openshift-spark
+LOCAL_IMAGE=kube-spark:snapshot
+SPARK_IMAGE=manyangled/kube-spark:snapshot
+
+SPARK_DISTRO=/home/eje/git/spark/spark-2.1.0-SNAPSHOT-bin-k8s-spark-eje.tgz
 
 # If you're pushing to an integrated registry
 # in Openshift, SPARK_IMAGE will look something like this
@@ -9,6 +11,7 @@ SPARK_IMAGE=mattf/openshift-spark
 .PHONY: build clean push create destroy
 
 build:
+	cp $(SPARK_DISTRO) spark-distro.tgz
 	docker build -t $(LOCAL_IMAGE) .
 
 clean:
