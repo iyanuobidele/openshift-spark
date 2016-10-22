@@ -23,9 +23,9 @@ ENV PATH=$PATH:/opt/spark/bin
 ENV SPARK_HOME=/opt/spark
 
 # Add scripts used to configure the image
-COPY scripts /tmp/scripts/
+COPY scripts /opt/scripts/
 
-RUN bash -x /tmp/scripts/spark/install && rm -rf /tmp/scripts
+RUN bash -x /opt/scripts/spark/install
 
 # Switch to the user 185 for OpenShift usage
 # USER 185
