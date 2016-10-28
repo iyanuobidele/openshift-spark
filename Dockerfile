@@ -15,17 +15,15 @@ RUN yum install -y epel-release tar java && \
 #        tar -zx && \
 #    ln -s spark-2.0.0-bin-hadoop2.7 spark
 
-COPY spark-distro.tgz /opt/spark/
-
-RUN cd /opt/spark && tar --strip-components=1 -xzf spark-distro.tgz && rm spark-distro.tgz
-
 ENV PATH=$PATH:/opt/spark/bin
 ENV SPARK_HOME=/opt/spark
 
 # Add scripts used to configure the image
 COPY scripts /opt/scripts/
 
-RUN bash -x /opt/scripts/spark/install
+COPY spark-distro.tgz /opt/spark/
+
+RUN cd /opt/spark && tar --strip-components=1 -xzf spark-distro.tgz && rm spark-distro.tgz && bash -x /opt/scripts/spark/install
 
 # Switch to the user 185 for OpenShift usage
 # USER 185
