@@ -6,7 +6,7 @@ set -x
 CLIENT_JAR=$1
 shift
 
-curl -L -o /opt/client.jar $CLIENT_JAR
+curl -L -o $SPARK_HOME/kubernetes/client.jar $CLIENT_JAR
 
 # spark likes to be able to lookup a username for the running UID, if
 # no name is present fake it.
