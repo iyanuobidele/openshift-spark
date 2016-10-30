@@ -1,4 +1,4 @@
-LOCAL_IMAGE=kube-spark:snapshot
+LOCAL_IMAGE=kube-spark:os
 SPARK_IMAGE=manyangled/kube-spark:os
 
 SPARK_DISTRO=/home/eje/git/spark/spark-2.1.0-SNAPSHOT-bin-k8s-spark-eje.tgz
