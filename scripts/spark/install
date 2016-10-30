@@ -17,4 +17,7 @@ chmod a+rx /opt/driver.sh /opt/executor.sh
 mkdir $SPARK_HOME/work
 chmod a+rwx $SPARK_HOME/work
 
-chmod -R a+rwX $SPARK_HOME
+mkdir $SPARK_HOME/kubernetes
+chmod a+rwx $SPARK_HOME/kubernetes
+
+chmod -R a+rX $SPARK_HOME
