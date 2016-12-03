@@ -1,7 +1,7 @@
-LOCAL_IMAGE=quay.io/intelccc/kube-spark
-SPARK_IMAGE=quay.io/intelccc/kube-spark
+LOCAL_IMAGE=kube-spark:snapshot
+SPARK_IMAGE=quay.io/intelccc/kube-spark:snapshot
 
-SPARK_DISTRO=~/IdeaProjects/spark-2.0.0-bin-hadoop2.7.tgz
+SPARK_DISTRO=/home/iyanu/Downloads/spark-2.1.0-SNAPSHOT-bin-custom-k8s-spark.tar.gz
 
 # If you're pushing to an integrated registry
 # in Openshift, SPARK_IMAGE will look something like this
@@ -12,13 +12,13 @@ SPARK_DISTRO=~/IdeaProjects/spark-2.0.0-bin-hadoop2.7.tgz
 
 build:
 	cp $(SPARK_DISTRO) spark-distro.tgz
-	docker build --build-arg http_proxy=$(httpProxy) --build-arg https_proxy=$(httpsProxy) -t $(LOCAL_IMAGE) .
+	docker build --build-arg=http_proxy --build-arg=https_proxy -t $(LOCAL_IMAGE) .
 
 clean:
 	docker rmi $(LOCAL_IMAGE)
 
-push: build
-	docker tag -f $(LOCAL_IMAGE) $(SPARK_IMAGE)
+push: #build
+	docker tag $(LOCAL_IMAGE) $(SPARK_IMAGE)
 	docker push $(SPARK_IMAGE)
 
 create: push template.yaml

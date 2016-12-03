@@ -2,6 +2,10 @@ FROM centos:latest
 
 MAINTAINER Erik Erlandson <eje@redhat.com>
 
+ARG http_proxy
+ARG https_proxy
+ENV http_proxy ${http_proxy}
+ENV https_proxy ${https_proxy} 
 # when the containers are not run w/ uid 0, the uid may not map in
 # /etc/passwd and it may not be possible to modify things like
 # /etc/hosts. nss_wrapper provides an LD_PRELOAD way to modify passwd
